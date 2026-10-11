@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tamir's Dallas Trip · Oct 21–Nov 4, 2026</title>
+<style>
+:root{--bg:#0f1420;--card:#1a2233;--ink:#e8ecf3;--mut:#9aa6bb;--acc:#ff9f43;--acc2:#4fc3f7;--ok:#5bd68a}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{padding:18px 16px 8px;max-width:1100px;margin:auto}h1{margin:0;font-size:1.5rem}header p{margin:4px 0;color:var(--mut)}
+nav{position:sticky;top:0;z-index:5;background:#0f1420ee;backdrop-filter:blur(6px);border-bottom:1px solid #2a3448}
+nav .in{max-width:1100px;margin:auto;display:flex;gap:6px;overflow-x:auto;padding:8px 12px}
+nav button{flex:none;background:var(--card);color:var(--ink);border:1px solid #2a3448;border-radius:20px;padding:7px 14px;font:inherit;cursor:pointer}
+nav button.on{background:var(--acc);color:#111;border-color:var(--acc);font-weight:600}
+main{max-width:1100px;margin:auto;padding:12px}section{display:none}section.on{display:block}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.card{background:var(--card);border:1px solid #2a3448;border-radius:12px;padding:14px}
+.card h3{margin:0 0 6px;font-size:1.05rem}.mut{color:var(--mut);font-size:.9rem}
+.badge{display:inline-block;background:#2b3a55;color:var(--acc2);border-radius:6px;padding:2px 8px;font-size:.82rem;margin:2px 4px 2px 0}
+.badge.p{background:#3a2f1f;color:var(--acc)}.badge.w{background:#3a1f25;color:#ff8a8a}
+a{color:var(--acc2)}.links a{margin-right:12px;display:inline-block;padding:4px 0}
+.chk{display:flex;gap:14px;margin-top:8px;font-size:.88rem}.chk label{cursor:pointer}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}.tools input[type=search]{flex:1 1 220px;padding:9px 12px;border-radius:8px;border:1px solid #2a3448;background:#0b0f18;color:var(--ink);font:inherit}
+.chip{background:#0b0f18;border:1px solid #2a3448;color:var(--ink);border-radius:16px;padding:5px 12px;cursor:pointer;font:inherit;font-size:.88rem}.chip.on{background:var(--acc2);color:#111}
+table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid #2a3448;padding:8px;text-align:left;vertical-align:top}
+.tl .day{display:grid;grid-template-columns:110px 1fr;gap:10px;padding:10px;border-left:3px solid #2a3448;margin-bottom:6px;background:var(--card);border-radius:0 10px 10px 0}
+.tl .day.we{border-left-color:var(--acc)}.tl .day.tr{border-left-color:var(--ok)}
+.warn{background:#2a1f12;border:1px solid #6b4a1c;border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.92rem}
+.cmp{overflow-x:auto}.done{opacity:.55}
+@media(max-width:600px){.tl .day{grid-template-columns:1fr}table{font-size:.88rem}h1{font-size:1.25rem}}
+</style></head><body>
+<header><h1>🤠 Tamir's Dallas Trip</h1><p>Oct 21 – Nov 4, 2026 · Home base: home base (East Dallas)</p><p class="mut">Researched Oct 11, 2026. All drive times are ESTIMATES from the home base (off-peak, not live traffic). Confirm prices and hours before booking.</p></header>
+<nav><div class="in" id="tabs"></div></nav>
+<main>
+<section id="overview">
+<div class="grid">
+<div class="card"><h3>Trip</h3><p>Arrive <b>Wed Oct 21</b>, depart <b>Wed Nov 4</b>. Weekdays are work days (finishing ~4pm CT; he can leave early).</p><p>Weekend 1 (Oct 24–25): Collect-A-Con + a Sunday trip.<br>Weekend 2 (Oct 30–Nov 1): Houston / Space Center overnight.</p></div>
+<div class="card"><h3>Estimated cost per person</h3><p><span class="badge p">$300–450</span> + Houston hotel <span class="badge p">$56–115/night</span></p><table id="cost"></table><p class="mut">Excludes gas and meals. Resale and third-party prices vary.</p></div>
+<div class="card"><h3>Key caveats</h3>
+<div class="warn">State Fair ended Oct 18 (not running). No Texas Rangers home games.</div>
+<div class="warn">Collect-A-Con official price not found; ~$85 is a resale listing.</div>
+<div class="warn">Halloween Oct 31 in Houston: Galaxy Frights day at Space Center (busier). Missing the Stars Oct 31 game and Dallas Halloween nights. Galaxy Frights hours: event page says 10am–4pm, hours page says 10am–6pm. Confirm.</div>
+<div class="warn">Stars start times from CBS are likely ET. Verify.</div></div>
+<div class="card"><h3>Open questions</h3><ol class="mut"><li>Budget and Houston hotel tier?</li><li>Leave early Fri Oct 30 (skipping Mavs vs Rockets)?</li><li>Interest in sports, and which games?</li><li>How much driving per day is OK?</li><li>One or both days of Collect-A-Con?</li><li>Is Halloween night important?</li><li>Departure time on Nov 4?</li><li>Is the local companion 21+, and do they have preferences?</li></ol></div>
+</div></section>
+<section id="itin"><div class="tools"><span class="mut">🟠 weekend · 🟢 travel days</span></div><div class="tl" id="days"></div></section>
+<section id="todo"><div class="tools"><input type="search" id="qa" placeholder="Search things to do…"><span id="catf"></span></div><div class="grid" id="acts"></div></section>
+<section id="food"><div class="tools"><input type="search" id="qf" placeholder="Search food…"><span id="foodf"></span></div><div class="grid" id="foods"></div></section>
+<section id="trips">
+<h2>Sunday Oct 25: Waco vs Fort Worth</h2><p class="mut">Sunday is also Collect-A-Con day 2 and the Stars vs Islanders game.</p>
+<div class="cmp card"><table><tr><th></th><th>Waco</th><th>Fort Worth ⭐</th></tr>
+<tr><td>Est. drive</td><td>~1.5 hr each way (I-35E)</td><td>~45–50 min each way (I-30)</td></tr>
+<tr><td>Texas origins</td><td><a href="https://drpeppermuseum.com/plan-your-visit/">Dr Pepper Museum</a> $12, Sun 10–5:30 (last ticket 4:30) · <a href="https://www.texasranger.org/Visit">Texas Ranger Hall of Fame</a> $10.50, daily 9–5</td><td><a href="https://www.fortworthstockyards.org/events/fort-worth-herd-twice-daily-cattle-drive">Cattle drive</a>, free, 11:30 & 4pm · <a href="https://fortworthstockyards.com/events/sunday-matinee-stockyards-championship-rodeo/">Rodeo matinee</a>: none found for Oct 25</td></tr>
+<tr><td>Science / nature</td><td><a href="https://nps.gov/waco/planyourvisit/hours.htm">Waco Mammoth NM</a>: free, Dig Shelter $6, daily 9–5</td><td><a href="https://www.fwmuseum.org/visit/plan-your-visit/">FW Museum of Science & History</a> $16, Sun noon–5</td></tr>
+<tr><td>Museums</td><td>(Ranger museum)</td><td><a href="https://kimbellart.org/visit">Kimbell</a> (free; exhibitions $18) & <a href="https://www.cartermuseum.org/plan-your-visit">Amon Carter</a> (free), Sun noon–5</td></tr>
+<tr><td>Watch out</td><td><span class="badge w">Magnolia Silos CLOSED Sundays</span></td><td>Museums open at noon on Sunday</td></tr>
+<tr><td>Food</td><td><a href="https://www.guessfamilybbq.com/">Guess Family BBQ</a>: plates $10/$14/$18, Sun 10–2 (other listings say until 3–4pm)</td><td><a href="https://heimbbq.com/locations-menu/">Heim BBQ River</a>: Sun 11–9, price not found · Joe T. Garcia's</td></tr>
+</table></div>
+<div class="grid" style="margin-top:12px">
+<div class="card"><h3>Sample Waco Sunday</h3><p>8:00 leave → 9:30 Mammoth NM → 11:15 Guess Family BBQ (before the 2pm close) → 12:30 Texas Ranger Hall of Fame → 2:15 Dr Pepper Museum → 4:30 drive back, home ~6pm</p></div>
+<div class="card"><h3>Sample Fort Worth Sunday ⭐</h3><p>10:15 leave → 11:00 Stockyards → 11:30 cattle drive → 12:15 Heim BBQ → 1:30 Science Museum (planetarium) → 3:30 Kimbell / Amon Carter (both close at 5) → 5:15 head back, home ~6pm, in time for the Stars game</p></div></div>
+<h2>Houston: Space Center weekend (Oct 30 – Nov 1)</h2>
+<div class="grid">
+<div class="card"><h3>Space Center Houston</h3><span class="badge p">GA $29.95–39.95 online</span><span class="badge p">GA + Historic Mission Control $44.95+</span><p class="mut">$5 more at the gate. GA includes 3 NASA trams (boarding passes are first-come). Book Mission Control ahead; it sells out on weekends. The last tram leaves 2 hours before closing. Breakfast with an Astronaut $79.95+; Early Access tour $75. ~3.5–4 hr drive (estimate).</p><div class="links"><a href="https://spacecenter.org/visitor-information/">Tickets</a><a href="https://spacecenter.org/exhibits-and-experiences/nasa-tram-tour/">Tram tours</a><a href="https://spacecenter.org/galaxy-frights/">Galaxy Frights</a></div></div>
+<div class="card"><h3>Hotels near Clear Lake</h3><p>Hilton Houston NASA Clear Lake <span class="badge p">~$115</span><br>South Shore Harbour Resort <span class="badge p">$63–175 + $20–22.60 resort fee</span> <a href="tel:2813341000">📞</a><br>Extended Stay America NASA/JSC <span class="badge p">from ~$56</span></p><p class="mut">Third-party listings; dates not confirmed for Oct 30–31.</p><div class="links"><a href="https://www.hotwire.com/Houston-Hotels-Hilton-Houston-NASA-Clear-Lake.h5843.Hotel-Information">Hilton</a><a href="https://www.sshr.com/">SSHR</a><a href="https://www.kayak.com/Nassau-Bay-Hotels-Extended-Stay-America-Houston---Nasa---Johnson-Space-Center.4931.ksp">ESA</a></div></div>
+<div class="card"><h3>Plan</h3><p><b>Fri:</b> leave ~3:30pm, Buc-ee's dinner (Madisonville), check in.<br><b>Sat:</b> Space Center at opening, Mission Control tram first. Leave 4–5pm for Montrose (~35–50 min, estimate). <b>Októ</b> dinner (reserve; closed Sun), then <b>Van Leeuwen</b> in the same complex. Back to Clear Lake.<br><b>Sun:</b> drive back; optional Waco stop or Truth BBQ.<br><span class="mut">Alt: leave at dawn Saturday, overnight, and stop in Waco on Sunday.</span></p></div>
+<div class="card"><h3>Other trips</h3><p class="mut">Dinosaur Valley SP $8 (~1.5 hr) · Austin (~3 hr; prices not found) · Lockhart BBQ (<a href="https://www.kreuzmarket.com/">Kreuz</a>, <a href="https://www.blacksbbq.com/">Black's</a>, <a href="https://smittysmarket.com/">Smitty's</a>) · McDonald Observatory $25 star party (~7.5 hr; not recommended).</p></div>
+</div></section>
+<section id="home"><div class="grid" id="near"></div></section>
+</main>
+<script>
+const ACT=[
+{n:"Collect-A-Con Dallas",c:["museums"],p:"~$85 resale (official price not found)",h:"Sat Oct 24 10–6, Sun Oct 25 10–5",d:"~10–12 min",a:"650 S Griffin St, Dallas, TX 75202",t:"2149392700",u:"https://collectaconusa.com/dallas/",note:"Exhibit Hall B. Kids 7 and under free. Buy from the official site."},
+{n:"Perot Museum: general admission",c:["space","museums"],p:"$27 (+$12 Soccer exhibit, +$8 3D film)",h:"Mon & Wed–Sat 10–5, Sun 11–5, closed Tue (open Tuesdays Nov–Dec). Last entry 4pm",d:"~10–12 min",a:"2201 N Field St, Dallas, TX 75201",t:"2144285555",u:"https://www.perotmuseum.org/visit/hours/",note:"Needs an early finish on a weekday."},
+{n:"Perot Thursdays on Tap (21+)",c:["space","museums"],p:"$27",h:"Last one: Thu Oct 22, 6–10pm",d:"~10–12 min",a:"2201 N Field St, Dallas, TX 75201",u:"https://www.perotmuseum.org/events/adults/thursdays-on-tap/",note:"Often sells out. Food and drinks are extra."},
+{n:"Perot After Hours: spooky science",c:["space","halloween"],p:"Price not found (listed for members)",h:"Fri Oct 23, 5:30–9pm",d:"~10–12 min",a:"2201 N Field St, Dallas, TX 75201",u:"https://ticketing.perotmuseum.org/events",note:"Check whether non-members can attend."},
+{n:"Frontiers of Flight Museum",c:["space","museums"],p:"$20",h:"Mon–Sat 10–5, Sun 1–5",d:"~15–20 min",a:"Frontiers of Flight Museum, Dallas, TX",u:"https://flightmuseum.com/visit/",note:"Apollo 7 capsule. Needs an early finish."},
+{n:"Sixth Floor Museum (JFK)",c:["museums"],p:"$27",h:"Wed–Sun 10–5, last entry 4:15",d:"~10–12 min",a:"Sixth Floor Museum at Dealey Plaza, Dallas, TX",u:"https://www.jfk.org/plan-your-visit/",note:"Needs leaving work early."},
+{n:"Fort Worth Stockyards cattle drive",c:["texas","outdoors"],p:"Free",h:"Daily 11:30am & 4:00pm",d:"~45–50 min",a:"Fort Worth Stockyards, Fort Worth, TX",u:"https://www.fortworthstockyards.org/events/fort-worth-herd-twice-daily-cattle-drive",note:"For the 4pm drive, leave by about 3pm."},
+{n:"Kimbell Art Museum",c:["museums"],p:"Collection free; exhibitions $18 (half price Fri 5–8)",h:"Tue–Thu & Sat 10–5, Fri noon–8, Sun noon–5, closed Mon",d:"~45 min",a:"3333 Camp Bowie Blvd, Fort Worth, TX",u:"https://kimbellart.org/visit",note:"Current exhibition: Photography's First Century (Oct 4 – Jan 17)."},
+{n:"Amon Carter Museum",c:["museums"],p:"Free",h:"Thu 10–8; Tue/Wed/Fri/Sat 10–5; Sun noon–5; closed Mon",d:"~45 min",a:"3501 Camp Bowie Blvd, Fort Worth, TX 76107",t:"8177381933",u:"https://www.cartermuseum.org/plan-your-visit",note:"Next door to the Kimbell."},
+{n:"Fort Worth Museum of Science & History",c:["space","museums"],p:"$16 (planetarium included; Omni Theater +$15)",h:"Tue–Sat 10–5, Sun noon–5, closed Mon",d:"~45–50 min",a:"1600 Gendy St, Fort Worth, TX 76107",t:"8172559300",u:"https://www.fwmuseum.org/visit/plan-your-visit/",note:""},
+{n:"Star parties (DFW)",c:["space","outdoors"],p:"Price not found",h:"No DFW public dates confirmed for this window",d:"varies",u:"https://tpwd.texas.gov/calendar/dinosaur-valley/star-party-12",note:"Check the Texas Astronomical Society and FW Astronomical Society calendars."},
+{n:"Dallas Stars (NHL)",c:["sports"],p:"Resale from ~$23–40",h:"Home: Oct 22, 25, 27, 29 (vs Montreal), 31",d:"~10–12 min",a:"American Airlines Center, Dallas, TX",u:"https://www.cbssports.com/nhl/teams/DAL/dallas-stars/schedule/",note:"CBS times are likely ET (8pm ET = 7pm CT). Verify."},
+{n:"Dallas Mavericks (NBA)",c:["sports"],p:"Resale from ~$24–93",h:"Sat Oct 24 7pm; Wed Oct 28 8:30pm; Fri Oct 30 7pm; Mon Nov 2 7pm (CT)",d:"~10–12 min",a:"American Airlines Center, Dallas, TX",u:"https://www.nba.com/mavs/schedule",note:"Optional."},
+{n:"Texas Rangers",c:["sports"],p:"—",h:"No home games in this window",d:"—",u:"",note:"The regular season ended in September."},
+{n:"Dallas Arboretum Pumpkin Village",c:["halloween","outdoors"],p:"$21.95 Mon–Thu / $25.95 Fri–Sun; parking $15",h:"Daytime, through Nov 1",d:"~10 min",a:"Dallas Arboretum, Dallas, TX",u:"https://www.dallasarboretum.org/autumn-at-the-arboretum/",note:""},
+{n:"Dark Hour Haunted House (Plano)",c:["halloween"],p:"$39–$110",h:"Select nights through Nov 13",d:"~25–30 min",a:"Dark Hour Haunted House, Plano, TX",u:"https://darkhourhauntedhouse.com/",note:""},
+{n:"Pumpkin Nights DFW",c:["halloween"],p:"Price not found",h:"Check the site",d:"Not found",u:"https://www.pumpkinnights.com/dallas",note:""},
+{n:"State Fair of Texas",c:["texas"],p:"—",h:"Ended Oct 18: NOT running during the trip",d:"—",u:"https://bigtex.com/faqs/when-is-the-2026-state-fair-of-texas/",note:""},
+{n:"Dinosaur Valley State Park",c:["outdoors","space"],p:"$8 adult",h:"Check the site",d:"~1.5 hr",a:"Dinosaur Valley State Park, Glen Rose, TX",u:"https://tpwd.texas.gov/state-parks/dinosaur-valley/fees-facilities/entrance-fees",note:"Dinosaur tracks. Fossil Rim nearby (price not found)."},
+{n:"McDonald Observatory Star Party",c:["space","outdoors"],p:"$25 adult",h:"Reservations required",d:"~7.5 hr",u:"https://mcdonaldobservatory.org/visit/star-party/",note:"Not recommended without extra days off."}
+];
+const FOOD=[
+{n:"Pecan Lodge",ty:"BBQ",ar:"Deep Ellum",p:"Price not found",h:"Mon 11–3, Tue–Thu 11–8, Fri 11–9, Sat 11–10, Sun 11–9",u:"https://pecanlodge.com/",a:"Pecan Lodge, Deep Ellum, Dallas",note:"~7 min from home (estimate)"},
+{n:"Cattleack Barbeque",ty:"BBQ",ar:"Farmers Branch",p:"Price not found",h:"Wed–Fri 10–2, plus 1st Saturday of the month (Nov 7, after the trip)",u:"https://cattleackbbq.com/",a:"Cattleack Barbeque, Farmers Branch, TX",note:"Sells out."},
+{n:"Terry Black's BBQ",ty:"BBQ",ar:"Deep Ellum",p:"Price not found",h:"",u:"https://terryblacksbbq.com/",a:"Terry Black's BBQ, Deep Ellum, Dallas",note:"Austin-born"},
+{n:"Babe's Chicken Dinner House",ty:"Southern",ar:"Roanoke / Garland",p:"~$18.99 plates (third-party source)",h:"Weekdays 11–2 & ~4:30/5–9",u:"https://babeschicken.com/",a:"Babe's Chicken Dinner House, Garland, TX",note:"Family style"},
+{n:"Whataburger",ty:"Burgers",ar:"Everywhere",p:"Price not found",h:"",u:"https://whataburger.com/",a:"Whataburger Dallas",note:"Texas-born, 1950"},
+{n:"Velvet Taco",ty:"Tacos",ar:"Uptown (Henderson)",p:"Price not found",h:"",u:"https://www.velvettaco.com/",a:"Velvet Taco Henderson Ave, Dallas",note:"Dallas-born; ~1.5 mi from home"},
+{n:"El Fenix",ty:"Tex-Mex",ar:"Downtown",p:"Price not found",h:"",u:"https://elfenix.com/",a:"El Fenix Downtown Dallas",note:"Since 1918"},
+{n:"Mia's Tex-Mex",ty:"Tex-Mex",ar:"Lemmon Ave",p:"Price not found",h:"",u:"https://miastexmex.com/",a:"Mia's Tex-Mex, Lemmon Ave, Dallas",note:"Brisket tacos"},
+{n:"Joe T. Garcia's",ty:"Tex-Mex",ar:"Fort Worth",p:"Price not found",h:"",u:"https://joets.com/",a:"Joe T. Garcia's, Fort Worth, TX",note:"Big patio"},
+{n:"Javier's",ty:"Mexican",ar:"Uptown / Knox",p:"Price not found",h:"",u:"https://www.javiers.net/",a:"Javier's Dallas",note:"Interior Mexican"},
+{n:"Kolache Factory",ty:"Kolaches",ar:"Various",p:"Price not found",h:"",u:"https://www.kolachefactory.com/",a:"Kolache Factory Dallas",note:"Texas-Czech"},
+{n:"Pappas Bros. Steakhouse",ty:"Steakhouse",ar:"Love Field area",p:"Price not found ($$$$)",h:"",u:"https://www.pappasbros.com/",a:"Pappas Bros Steakhouse Dallas",note:"Houston-born"},
+{n:"Del Frisco's Double Eagle",ty:"Steakhouse",ar:"Uptown",p:"Price not found ($$$$)",h:"",u:"https://www.delfriscos.com/",a:"Del Frisco's Double Eagle Dallas",note:"Dallas-founded"},
+{n:"Buc-ee's",ty:"Road stop",ar:"I-45 to Houston (Madisonville)",p:"Price not found",h:"",u:"https://buc-ees.com/",a:"Buc-ee's Madisonville TX",note:"Brisket sandwiches, Beaver Nuggets"},
+{n:"Heim Barbecue (River)",ty:"BBQ",ar:"Fort Worth",p:"Price not found",h:"Sun–Thu 11–9, Fri–Sat 11–10",u:"https://heimbbq.com/locations-menu/",a:"5333 White Settlement Rd, Fort Worth, TX 76114",t:"6827075772",note:""},
+{n:"Guess Family Barbecue",ty:"BBQ",ar:"Waco",p:"Plates $10 / $14 / $18",h:"Sun 10–2 per its site (other listings say until 3–4pm)",u:"https://www.guessfamilybbq.com/",a:"2803 Franklin Ave, Waco, TX 76710",t:"2549702134",note:""},
+{n:"Truth BBQ",ty:"BBQ",ar:"Houston",p:"Price not found",h:"",u:"https://truthbbq.com/",a:"Truth BBQ Houston",note:""},
+{n:"Októ",ty:"Mediterranean",ar:"Houston (Montrose)",p:"$50 and over (OpenTable)",h:"Tue–Wed 5–9, Thu 5–10, Fri–Sat 5–11, closed Sun/Mon (OpenTable shows different hours; confirm)",u:"http://oktorestaurant.com/",a:"888 Westheimer Rd Suite 119, Houston, TX 77006",t:"7134856423",note:"Reserve for Halloween night."},
+{n:"Van Leeuwen Ice Cream",ty:"Dessert",ar:"Houston (Montrose)",p:"Price not found",h:"Fri–Sat noon–midnight, Sun–Thu noon–11",u:"https://vanleeuwenicecream.com/",a:"888 Westheimer Rd Suite 157, Houston, TX 77006",t:"7134922120",note:"Same complex as Októ. Most likely the place Tamir means."},
+{n:"Milk + Sugar",ty:"Dessert",ar:"Houston (Montrose)",p:"Price not found",h:"Fri–Sat noon–midnight",u:"https://www.milkandsugarcreamery.com/",a:"1848 Westheimer Rd, Houston, TX 77098",note:"Alternative, ~1 mi (estimate)"},
+{n:"Jeni's Splendid Ice Creams",ty:"Dessert",ar:"Houston (Montrose)",p:"Price not found",h:"",u:"https://jenis.com/",a:"1719 Westheimer Rd, Houston, TX",note:"Alternative, ~0.8 mi (estimate)"},
+{n:"Jimmy's Food Store",ty:"Italian deli",ar:"Near home base",p:"Price not found",h:"",u:"https://www.jimmysfoodstore.com/",a:"Jimmy's Food Store, Dallas, TX",note:"Near home base"}
+];
+const DAYS=[
+["Wed Oct 21","Arrive","Settle in; Whataburger or Velvet Taco."],
+["Thu Oct 22","Work","Perot Thursdays on Tap 6–10pm (last one), OR Stars vs Winnipeg (from ~$23)."],
+["Fri Oct 23","Work","Cattleack lunch. Evening: Perot spooky After Hours (5:30–9, if open to non-members), or Kimbell half-price Friday 5–8 + Fort Worth dinner."],
+["Sat Oct 24","Weekend 1","Collect-A-Con 10am–6pm. Dinner at Pecan Lodge. Optional: Mavs vs Spurs 7pm."],
+["Sun Oct 25","Weekend 1","⭐ Fort Worth (recommended): leave 10:15, Stockyards, 11:30 cattle drive, Heim BBQ, Science Museum, Kimbell/Amon Carter, home ~6pm. Alt: Waco (Magnolia closed Sundays). Alt: stay local, Collect-A-Con day 2 + Stars vs Islanders."],
+["Mon Oct 26","Work","Leave early for Frontiers of Flight (closes 5), then Babe's."],
+["Tue Oct 27","Work","Stars vs New Jersey, or a quiet night on Lower Greenville."],
+["Wed Oct 28","Work","Leave early for the Sixth Floor Museum (last entry 4:15), or Mavs vs Thunder 8:30pm."],
+["Thu Oct 29","Work","Amon Carter (open until 8) + Stockyards, OR Stars vs Montreal."],
+["Fri Oct 30","Weekend 2","Leave work ~3:30pm and drive to Houston (~3.5–4 hr). Buc-ee's dinner; check in at a Clear Lake hotel."],
+["Sat Oct 31","Weekend 2","Space Center Houston (Galaxy Frights day) + Historic Mission Control tram. Leave 4–5pm for Montrose (~35–50 min, estimate). Dinner at Októ, dessert at Van Leeuwen. Back to Clear Lake."],
+["Sun Nov 1","Weekend 2","Drive back. Optional Waco stop (Dr Pepper Museum, Mammoth; Magnolia closed Sun) or Truth BBQ."],
+["Mon Nov 2","Work","Mavs vs Kings 7pm (from ~$24)."],
+["Tue Nov 3","Work","Perot (open Tuesdays in November) if he leaves early; farewell steak dinner."],
+["Wed Nov 4","Depart","Depending on flight time: Cattleack lunch (Wed 10–2) or the Sixth Floor Museum."]
+];
+
+const COST=[["Collect-A-Con","~$85 (resale; official price not found)"],["Perot Museum","$27"],["Frontiers of Flight","$20"],["Sixth Floor Museum","$27"],["Stars game","~$23–40"],["Mavs game (optional)","~$24–93"],["FW Science Museum","$16"],["Space Center + Mission Control tram","$44.95"],["Októ dinner","$50+"]];
+const NEAR=[{n:"Jimmy's Food Store",d:"nearby",x:"Italian deli and market",u:"https://www.jimmysfoodstore.com/",a:"Jimmy's Food Store, Dallas, TX"},{n:"Lower Greenville Ave",d:"~1.5 mi",x:"Restaurant and bar strip for weeknight dinners",u:"https://www.lowergreenville.com/",a:"Lower Greenville Ave, Dallas, TX"},{n:"White Rock Lake + Dallas Arboretum",d:"~4 mi / 10 min",x:"Sunset walk; Pumpkin Village through Nov 1",u:"https://www.dallasarboretum.org/",a:"Dallas Arboretum, Dallas, TX"},{n:"Pecan Lodge (Deep Ellum)",d:"~2 mi / 7 min",x:"BBQ",u:"https://pecanlodge.com/",a:"Pecan Lodge, Deep Ellum, Dallas"},{n:"Velvet Taco (Henderson)",d:"~1.5 mi",x:"Dallas-born tacos",u:"https://www.velvettaco.com/",a:"Velvet Taco Henderson Ave, Dallas"}];
+const CATS={space:"🚀 Space/Science",museums:"🏛 Museums",texas:"🤠 Texas origins",sports:"🏒 Sports",halloween:"🎃 Halloween",outdoors:"🌳 Outdoors"};
+const TABS=[["overview","Overview"],["itin","Itinerary"],["todo","Things to do"],["food","Food"],["trips","Day trips"],["home","Home base"]];
+const $=s=>document.querySelector(s),esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const st=JSON.parse(localStorage.getItem("dtrip")||"{}"),save=()=>localStorage.setItem("dtrip",JSON.stringify(st));
+const map=a=>a?`<a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(a)}">📍 Map</a>`:"";
+const links=o=>`<div class="links">${o.u?`<a target="_blank" rel="noopener" href="${o.u}">🔗 Website</a>`:""}${map(o.a)}${o.t?`<a href="tel:+1${o.t}">📞 Call</a>`:""}</div>`;
+const chk=k=>`<div class="chk"><label><input type="checkbox" data-k="${k}|d" ${st[k+"|d"]?"checked":""}> ✅ Done</label><label><input type="checkbox" data-k="${k}|i" ${st[k+"|i"]?"checked":""}> ⭐ Interested</label></div>`;
+const pb=p=>`<span class="badge ${/not found|—/.test(p)?"w":"p"}">${esc(p)}</span>`;
+let cat=null,ft=null;
+function rActs(){const q=$("#qa").value.toLowerCase();$("#acts").innerHTML=ACT.filter(o=>(!cat||o.c.includes(cat))&&JSON.stringify(o).toLowerCase().includes(q)).map(o=>`<div class="card ${st["a:"+o.n+"|d"]?"done":""}"><h3>${esc(o.n)}</h3>${o.c.map(c=>`<span class="badge">${CATS[c]}</span>`).join("")}<div>${pb(o.p)}</div><p class="mut">🕒 ${esc(o.h)}<br>🚗 ${esc(o.d)} (estimate)${o.note?"<br>ℹ️ "+esc(o.note):""}</p>${links(o)}${chk("a:"+o.n)}</div>`).join("")||"<p class=mut>No matches.</p>"}
+function rFood(){const q=$("#qf").value.toLowerCase();$("#foods").innerHTML=FOOD.filter(o=>(!ft||o.ty===ft||o.ar.startsWith(ft))&&JSON.stringify(o).toLowerCase().includes(q)).map(o=>`<div class="card ${st["f:"+o.n+"|d"]?"done":""}"><h3>${esc(o.n)}</h3><span class="badge">${esc(o.ty)}</span><span class="badge">${esc(o.ar)}</span><div>${pb(o.p)}</div><p class="mut">${o.h?"🕒 "+esc(o.h)+"<br>":""}${esc(o.note)}</p>${links(o)}${chk("f:"+o.n)}</div>`).join("")||"<p class=mut>No matches.</p>"}
+function chips(el,list,get,set,r){el.innerHTML=["All",...list].map(x=>`<button class="chip ${(get()||"All")===x?"on":""}" data-v="${esc(x)}">${esc(CATS[x]||x)}</button>`).join(" ");el.onclick=e=>{const v=e.target.dataset.v;if(!v)return;set(v==="All"?null:v);chips(el,list,get,set,r);r()}}
+$("#tabs").innerHTML=TABS.map(([i,t])=>`<button data-t="${i}">${t}</button>`).join("");
+function show(t){document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===t));document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===t));try{history.replaceState(null,"",location.pathname+location.search+"#"+t)}catch(e){};setTimeout(()=>scrollTo(0,0),0)}
+$("#tabs").onclick=e=>e.target.dataset.t&&show(e.target.dataset.t);
+$("#cost").innerHTML=COST.map(([a,b])=>`<tr><td>${a}</td><td>${b}</td></tr>`).join("");
+$("#days").innerHTML=DAYS.map(([d,k,x])=>`<div class="day ${/Weekend/.test(k)?"we":/Arrive|Depart/.test(k)?"tr":""}"><div><b>${d}</b><br><span class="mut">${k}</span></div><div>${esc(x)}${chk("d:"+d)}</div></div>`).join("");
+$("#near").innerHTML=`<div class="card"><h3>🏠 Home base (East Dallas)</h3><p class="mut">East Dallas. Distances are estimates.</p></div>`+NEAR.map(o=>`<div class="card"><h3>${o.n}</h3><span class="badge">${o.d}</span><p class="mut">${o.x}</p>${links(o)}${chk("n:"+o.n)}</div>`).join("");
+chips($("#catf"),Object.keys(CATS),()=>cat,v=>cat=v,rActs);
+chips($("#foodf"),[...new Set(FOOD.map(f=>f.ty))],()=>ft,v=>ft=v,rFood);
+$("#qa").oninput=rActs;$("#qf").oninput=rFood;
+document.addEventListener("change",e=>{const k=e.target.dataset.k;if(k){st[k]=e.target.checked;save();const c=e.target.closest(".card");if(c&&k.endsWith("|d"))c.classList.toggle("done",e.target.checked)}});
+rActs();rFood();show((location.hash||"#overview").slice(1)in{overview:1,itin:1,todo:1,food:1,trips:1,home:1}?(location.hash||"#overview").slice(1):"overview");
+</script></body></html>
