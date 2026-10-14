@@ -23,7 +23,7 @@ table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid #2a3448;
 .warn{background:#2a1f12;border:1px solid #6b4a1c;border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.92rem}
 .cmp{overflow-x:auto}.done{opacity:.55}
 @media(max-width:600px){.tl .day{grid-template-columns:1fr}table{font-size:.88rem}h1{font-size:1.25rem}}
-</style></head><body>
+.wstrip{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x proximity}.wd{flex:0 0 150px;scroll-snap-align:start;background:var(--card);border:1px solid #2a3448;border-radius:10px;padding:8px;font-size:.85rem}.wd.islive{border-color:var(--acc)}.wh{font-weight:600;margin-bottom:4px}.ws{margin-top:6px;border-top:1px solid #2a3448;padding-top:4px}.sm{font-size:.75rem}</style></head><body>
 <header><h1>🤠 Tamir's Dallas Trip</h1><p>Oct 21 – Nov 4, 2026 · Home base: home base (East Dallas)</p><p class="mut">Researched Oct 11, 2026. All drive times are ESTIMATES from the home base (off-peak, not live traffic). Confirm prices and hours before booking.</p></header>
 <nav><div class="in" id="tabs"></div></nav>
 <main>
@@ -38,7 +38,8 @@ table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid #2a3448;
 <div class="warn">Stars start times from CBS are likely ET. Verify.</div></div>
 <div class="card"><h3>Answered / still open</h3><p class="mut">✅ Budget fine (~$80–150 hotels) · Collect-A-Con Sat only · Leaves the afternoon of Nov 4 · Both 21+ · Houston overnight: yes</p><ol class="mut"><li>Leave early Fri Oct 30? One or two Houston nights?</li><li>Which games, if any?</li><li>How much driving per day?</li><li>Halloween night in Houston OK?</li></ol></div>
 </div></section>
-<section id="itin"><div class="tools"><span class="mut">🟠 weekend · 🟢 travel days</span></div><div class="tl" id="days"></div></section>
+<section id="itin"><div class="card" style="margin-bottom:12px"><h3>🌦 Daily weather, Oct 21 – Nov 4 (swipe →)</h3><p class="mut sm" id="wxstripstatus">Loading…</p><div class="wstrip" id="wxstrip"></div>
+<p class="mut sm">Live = <a href="https://open-meteo.com/">Open-Meteo</a> forecast (up to 16 days ahead). Otherwise: <b>Typical (not a forecast yet)</b>, 1991–2020 daily normals. Dallas normals come from <a href="https://www.extremeweatherwatch.com/cities/dallas/day/october-21">Oct 21</a>, <a href="https://www.extremeweatherwatch.com/cities/dallas/day/october-25">Oct 25</a>, <a href="https://www.extremeweatherwatch.com/cities/dallas/day/october-30">Oct 30</a> and <a href="https://www.extremeweatherwatch.com/cities/dallas/day/november-4">Nov 4</a>; days in between (≈) are interpolated from those and are approximate. No Fort Worth normal was found, so Fort Worth uses the Dallas figure. Houston, Galveston (Seabrook) and Waco sources are in the Houston weather box under Day trips. Typical conditions, not a forecast; check again closer to the date. <a href="https://www.weather.gov/fwd/">NWS Fort Worth</a> · <a href="https://www.weather.gov/hgx/">NWS Houston</a></p></div><div class="tools"><span class="mut">🟠 weekend · 🟢 travel days</span></div><div class="tl" id="days"></div></section>
 <section id="todo"><div class="tools"><input type="search" id="qa" placeholder="Search things to do…"><span id="catf"></span></div><div class="grid" id="acts"></div></section>
 <section id="food"><div class="tools"><input type="search" id="qf" placeholder="Search food…"><span id="foodf"></span></div><div class="grid" id="foods"></div></section>
 <section id="trips">
@@ -188,5 +189,33 @@ const u="https://api.open-meteo.com/v1/forecast?latitude="+STOPS.map(s=>s.la).jo
 render(null,null);document.getElementById("wxstatus").textContent="Loading the live forecast…";
 const ctl=new AbortController();setTimeout(()=>ctl.abort(),10000);
 fetch(u,{signal:ctl.signal}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(j=>render(Array.isArray(j)?j:[j],null)).catch(e=>render(null,e.name==="AbortError"?"timeout":(e.message||"network error")));
+})();
+</script><script>(function(){
+const P={dal:{n:"Dallas",la:32.7767,lo:-96.797},fw:{n:"Fort Worth",la:32.7555,lo:-97.3308},sea:{n:"Seabrook",la:29.5641,lo:-95.0255},mon:{n:"Montrose",la:29.747,lo:-95.391},waco:{n:"Waco",la:31.5493,lo:-97.1467}};
+const K=Object.keys(P);
+const DS={"10-21":[76.8,56.4,24.7],"10-25":[75.2,55.1,24.1],"10-30":[73.1,53.3,22.9],"11-04":[71.2,51.7,23.2]}; // sourced Dallas normals
+const HN={"10-30":[77.4,58.8,25.9],"10-31":[77.1,58.5,25.2],"11-01":[76.7,58.2,25.9]};
+const day=s=>Math.round((new Date("2026-"+s+"T12:00:00")-new Date("2026-10-21T12:00:00"))/864e5);
+function dallasN(md){if(DS[md])return {v:DS[md],src:"Dallas normal",ap:false};const ks=Object.keys(DS);for(let i=0;i<ks.length-1;i++){const a=ks[i],b=ks[i+1],x=day(md),xa=day(a),xb=day(b);if(x>xa&&x<xb){const f=(x-xa)/(xb-xa);return {v:DS[a].map((y,j)=>+(y+(DS[b][j]-y)*f).toFixed(1)),src:"≈ Dallas, interpolated from "+a+" & "+b,ap:true}}}return null}
+function normal(k,md){if(k==="dal")return dallasN(md);if(k==="fw"){const d=dallasN(md);return d&&{v:d.v,src:"Dallas normal (no Fort Worth normal found)",ap:d.ap}}
+ if(k==="mon")return HN[md]?{v:HN[md],src:"Houston/Hobby normal",ap:false}:null;if(k==="sea")return {v:[76.0,63.5,25.9],src:"Galveston Oct 31 normal",ap:md!=="10-31"};if(k==="waco")return {v:[73.9,51.0,24.6],src:"Waco Nov 1 normal",ap:md!=="11-01"};}
+const PLAN=[["10-21","Arrive",["dal"]],["10-22","",["dal"]],["10-23","",["dal"]],["10-24","Collect-A-Con",["dal"]],["10-25","Fort Worth ⭐",["fw"]],["10-26","",["dal"]],["10-27","",["dal"]],["10-28","",["dal"]],["10-29","",["dal"]],["10-30","Drive",["dal","sea"]],["10-31","Space Center + Októ",["sea","mon"]],["11-01","Drive home",["mon","waco","dal"]],["11-02","",["dal"]],["11-03","",["dal"]],["11-04","Depart (afternoon)",["dal"]]];
+const WC=c=>c==null?"":c===0?"☀️":c<=3?"⛅":c<=48?"🌫":c<=57?"🌦":c<=67?"🌧":c<=77?"❄️":c<=82?"🌦":"⛈";
+const today=new Date();
+function render(data,err){
+ const box=document.getElementById("wxstrip");if(!box)return;
+ box.innerHTML=PLAN.map(([md,lab,stops])=>{const iso="2026-"+md,dt=new Date(iso+"T12:00:00");
+  const cells=stops.map(k=>{const dd=data&&data[K.indexOf(k)]&&data[K.indexOf(k)].daily,i=dd?dd.time.indexOf(iso):-1;
+   if(i>=0&&dd.temperature_2m_max[i]!=null)return `<div class="ws live"><b>${P[k].n}</b> ${WC(dd.weather_code[i])}<br>${Math.round(dd.temperature_2m_max[i])}°/${Math.round(dd.temperature_2m_min[i])}° · ${dd.precipitation_probability_max[i]??"–"}% rain</div>`;
+   const n=normal(k,md),a=new Date(dt);a.setDate(a.getDate()-15);
+   return `<div class="ws"><b>${P[k].n}</b><br>${n?`${n.ap?"≈":""}${Math.round(n.v[0])}°/${Math.round(n.v[1])}° · ${Math.round(n.v[2])}% rain<br><span class="mut sm">${n.src}${n.ap?" (approximate)":""}</span>`:"normal not found"}</div>`}).join("");
+  const anyLive=cells.includes('ws live'),a=new Date(dt);a.setDate(a.getDate()-15);
+  return `<div class="wd ${anyLive?"islive":""}"><div class="wh">${dt.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})}${lab?`<br><span class="mut sm">${lab}</span>`:""}</div>${anyLive?'<span class="badge p">Live</span>':`<span class="badge">Typical (not a forecast yet)</span><div class="mut sm">${a>today?"forecast from ~"+a.toLocaleDateString("en-US",{month:"short",day:"numeric"}):(err?"live unavailable":"not in forecast")}</div>`}${cells}</div>`}).join("");
+ document.getElementById("wxstripstatus").innerHTML=(err?"⚠️ Live forecast unavailable ("+err+"); showing typical conditions. ":"✅ Live where available. ")+"Last updated "+new Date().toLocaleString("en-US",{timeZone:"America/Chicago",dateStyle:"medium",timeStyle:"short"})+" CT";
+}
+const u="https://api.open-meteo.com/v1/forecast?latitude="+K.map(k=>P[k].la).join(",")+"&longitude="+K.map(k=>P[k].lo).join(",")+"&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FChicago&forecast_days=16";
+render(null,null);document.getElementById("wxstripstatus").textContent="Loading live forecast…";
+const c=new AbortController();setTimeout(()=>c.abort(),10000);
+fetch(u,{signal:c.signal}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(j=>render(Array.isArray(j)?j:[j],null)).catch(e=>render(null,e.name==="AbortError"?"timeout":(e.message||"network error")));
 })();
 </script></body></html>
